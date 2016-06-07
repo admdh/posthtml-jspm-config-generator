@@ -7,7 +7,7 @@ module.exports = function (options) {
 
 	return function posthtmlModularCss(tree){
 		var newFileContent = ['\'use strict\'\;'];
-
+		
 		tree.match({ tag: 'script' }, function(node) {
 			if (typeof node.content !== 'undefined'){
 				var rawContent = node.content;
@@ -21,11 +21,13 @@ module.exports = function (options) {
 			}
 		});
 
-		fs.writeFile(opts.outputPath, newFileContent.join('\n'), function (err) {
-			if (err){
-				return console.log(err);
-			}
-			console.log('jspm config file created!');
-		});
+		if (newFileContent.length > 1 ) {
+			fs.writeFile(opts.outputPath, newFileContent.join('\n'), function (err) {
+				if (err){
+					return console.log(err);
+				}
+				console.log('jspm config file created!');
+			});
+		}
 	};
 };
