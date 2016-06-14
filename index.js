@@ -5,7 +5,7 @@ module.exports = function (options) {
 			outputPath: './src/jspm-imports.js'
 		};
 
-	return function posthtmlModularCss(tree){
+	return function posthtmlJspmConfigGenerator(tree){
 		var newFileContent = ['\'use strict\'\;'];
 		
 		tree.match({ tag: 'script' }, function(node) {
