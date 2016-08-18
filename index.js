@@ -7,7 +7,7 @@ module.exports = function (options) {
 
 	return function posthtmlJspmConfigGenerator(tree){
 		var newFileContent = ['\'use strict\'\;'];
-		
+
 		tree.match({ tag: 'script' }, function(node) {
 			if (typeof node.content !== 'undefined'){
 				var rawContent = node.content;
@@ -19,6 +19,7 @@ module.exports = function (options) {
 				}
 				newFileContent.push(jspmConfUrl)
 			}
+			return node;
 		});
 
 		if (newFileContent.length > 1 ) {
