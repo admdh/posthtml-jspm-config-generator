@@ -2,8 +2,8 @@ var fs = require('fs');
 
 module.exports = function (options) {
 	opts = options || {
-		outputPath: './src/jspm-imports.js'
-	};
+			outputPath: './src/jspm-imports.js'
+		};
 
 	return function posthtmlJspmConfigGenerator(tree){
 		var newFileContent = ['\'use strict\'\;'];
@@ -14,9 +14,8 @@ module.exports = function (options) {
 				var strContent = rawContent.toString();
 
 				if (strContent.indexOf('System.import') >= 0 ) {
-					var fileUrl = strContent.match(/['"](.*)['"]'/g);
-					fileUrl[0] = fileUrl[0].replace(/"|'/g, '');
-					var jspmConfUrl = 'import \'' + fileUrl[0] + '\';';
+					var fileUrl = strContent.match(/\"([^()]+)\"|\'([^()]+)\'/g);
+					var jspmConfUrl = 'import ' + fileUrl.toString() + ';';
 				}
 				newFileContent.push(jspmConfUrl)
 			}

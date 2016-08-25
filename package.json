@@ -1,6 +1,6 @@
 {
   "name": "posthtml-jspm-config-generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "PostHTML Plugin that helps to generate JSPM imports file",
   "keywords": [
     "posthtml",
