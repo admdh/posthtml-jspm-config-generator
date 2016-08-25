@@ -2,7 +2,6 @@ var fs = require('fs');
 
 module.exports = function (options) {
 	opts = options || {
-		pathToSource: '',
 		outputPath: './src/jspm-imports.js'
 	};
 
@@ -17,10 +16,6 @@ module.exports = function (options) {
 				if (strContent.indexOf('System.import') >= 0 ) {
 					var fileUrl = strContent.match(/['"](.*)['"]'/g);
 					fileUrl[0] = fileUrl[0].replace(/"|'/g, '');
-					if ( opts.pathToSource !== '' ) {
-						fileUrl[0] = opts.pathToSource + fileUrl[0];
-					}
-
 					var jspmConfUrl = 'import \'' + fileUrl[0] + '\';';
 				}
 				newFileContent.push(jspmConfUrl)
